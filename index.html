@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Library</title>
+</head>
+<body>
+
+<main>
+    <div class="container">
+        <div class="dashboard">
+
+        <form action="">
+            <label for="title">Book Title</label>
+            <input type="text" id="title" required><br>
+            <label for="author">Author</label>
+            <input type="text" id="author" required><br>
+            <label for="pages">Number of Pages</label>
+            <input type="number" id="pages" min="1" required><br>
+            <label for="language">Language</label>
+            <input type="text" id="language" required><br>
+            <p>Did you read it?</p>
+            <label class="switch">
+                <input type="checkbox" id="read">
+                <span class="slider round"></span>
+              </label><br>
+            <input type="submit" id="add-book" value="Add Book">
+        </form>
+            
+        <div class="library-log">
+            <h3>Library Log</h3>
+            <div><p>Total Books:
+                <span id="total-books">0</span></p>
+            </div>
+            <div><p>Read:
+                <span id="books-read">0</span></p>
+            </div>
+            <div><p>Not Read:
+                <span id="books-not-read">0</span></p>
+            </div>       
+        </div>    
+    
+        </div>
+
+        <div class="book-case">
+
+            <div class="library-title">
+                <h1>The Library</h1>
+            </div>
+
+            <div class="book-shelf">
+                <div class="cards">
+                    <div class="card-title">
+                        <h2>Example Book:<br> To Kill A Mockingbird</h2>
+                    </div>
+                    <div class="card-author">Harper Lee</div>
+                    <div class="card-pages">342 Pages</div>
+                    <div class="card-language">English</div>
+                    <div class="read-it">Read</div>
+                    <div class="trash-btn"><i class="fas fa-trash"></i></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <div class="circle3"></div>
+
+</main>
+    <script src="app.js"></script>
+
+</body>
+</html>

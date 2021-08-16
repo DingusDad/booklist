@@ -1,0 +1,342 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+    color: #426696;
+    font-weight: 600;
+    font-size: 3rem;
+    opacity: 0.8;
+}
+
+h2 {
+    color: #426696;
+    text-align: center;
+    opacity: 0.8;
+}
+
+h3 {
+    opacity: 0.8;
+}
+
+label, p {
+    font-size: 1.1rem;
+    margin: 5px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    justify-content: space-evenly;
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.7),
+        rgba(255, 255, 255, 0.3)
+    );
+    border-radius: 2rem;
+}
+
+.book-case {
+    flex: 3;
+}
+
+.book-shelf {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(auto-fill);
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    padding: 20px;
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.7),
+        rgba(255, 255, 255, 0.3)
+    );
+    border-radius: 2rem;
+    backdrop-filter: blur(2rem);
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.2);
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.fa-trash {
+    pointer-events: none;
+}
+
+.library-log {
+    font-size: 1.5rem;
+    padding: 20px;
+    background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+    border-radius: 2rem;
+    backdrop-filter: blur(2rem);
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.2);
+}
+
+.library-title {
+    padding: 20px;
+}
+
+.glass  {
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.7),
+        rgba(255, 255, 255, 0.3)
+    );
+    border-radius: 2rem;
+    backdrop-filter: blur(2rem);
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.2);
+}
+
+.container {
+    display: flex;
+    background: white;
+    min-height: 90vh;
+    width: 85%;
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.1)
+    );
+    border-radius: 2rem;
+    backdrop-filter: blur(2rem);
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.2);
+    z-index: 5;
+}
+
+.library-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type=text] {
+    background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+    padding: 10px;
+    border-radius: 2rem;
+    border: none;
+    opacity: 0.8;
+}
+
+input[type=text]:focus {
+    outline: none;
+}
+
+input[type=number] {
+    background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+    padding: 10px;
+    border-radius: 2rem;
+    border: none;
+    opacity: 0.8;
+}
+
+input[type=number]:focus {
+    outline: none;
+}
+
+input[type=submit] {
+    font-size: 1.1rem;
+    width: 15rem;
+    border: none;
+    padding: 10px;
+    background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+    border-radius: 2rem;
+}
+
+input[type=submit]:hover {
+    cursor: pointer;
+}
+
+.read-it {
+    width: 100%;
+    text-align: center;
+    background: #00865a;
+    opacity: 75%;
+    color: white;
+    border: none;
+    padding: 1rem;
+    margin: 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 2rem; 
+}
+
+.not-read-it {
+    width: 100%;
+    text-align: center;
+    background: #803434;
+    opacity: 75%;
+    color: white;
+    border: none;
+    padding: 1rem;
+    margin: 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 2rem; 
+}
+
+.trash-btn {
+    width: 100%;
+    background: #426696;
+    opacity: 75%;
+    color: white;
+    border: none;
+    padding: 1rem;
+    margin: auto;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 2rem;    
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #46eed2;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #46eed2;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  /* Background Circles */
+
+  .circle1 {
+    background: white;
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.9),
+        rgba(255, 255, 255, 0.1)
+    );
+    border-radius: 50%;
+    backdrop-filter: blur(2rem);
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.2);
+    height: 15rem;
+    width: 15rem;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    z-index: 1;
+  }
+
+  .circle2 {
+    background: white;
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.9),
+        rgba(255, 255, 255, 0.1)
+    );
+    border-radius: 50%;
+    backdrop-filter: blur(2rem);
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.2);
+    height: 15rem;
+    width: 15rem;
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    z-index: 1;
+  }
+
+  .circle3 {
+    background: white;
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.9),
+        rgba(255, 255, 255, 0.1)
+    );
+    border-radius: 50%;
+    backdrop-filter: blur(2rem);
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.2);
+    height: 15rem;
+    width: 15rem;
+    position: absolute;
+    bottom: 1%;
+    left: 50%;
+    z-index: 1;
+  }
