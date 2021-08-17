@@ -9,6 +9,8 @@ const addBookButton = document.querySelector('#add-book');
 const bookShelf = document.querySelector('.book-shelf');
 
 const totalBooks = document.querySelector('#total-books');
+const totalNotRead = document.querySelector('#books-not-read');
+const totalReadBooks = document.querySelector('#books-read');
 
 let isBookRead  = "Not Read";
 let myLibrary = [];
@@ -118,6 +120,7 @@ function addToBookShelf(object) {
     //ADD TO BOOKSHELF
     bookShelf.appendChild(cardDiv);
     totalBooksInLibrary();
+    booksRead();
 }
 
 function editInLibrary(e) {
@@ -128,6 +131,7 @@ function editInLibrary(e) {
         const bookCard = item.parentElement;
         bookCard.remove();
         totalBooksInLibrary();
+        booksRead();
     }
     //CHANGE READ STATUS OF BOOK
     if (item.classList[0] === "read-it") {
@@ -135,13 +139,15 @@ function editInLibrary(e) {
         item.innerText = "Not Read";
         item.classList.remove("read-it")
         item.classList.add("not-read-it");
+        booksRead();
         return;
     }
     if (item.classList[0] === "not-read-it") {
         console.log("change to green")
-    item.innerText = "Read";
-    item.classList.remove("not-read-it");
-    item.classList.add("read-it"); 
+        item.innerText = "Read";
+        item.classList.remove("not-read-it");
+        item.classList.add("read-it"); 
+        booksRead();
     }
 } 
 
@@ -156,4 +162,10 @@ function toTitleCase(string) {
 function totalBooksInLibrary() {
     let totalLibrayBooks = myLibrary.length;
     totalBooks.innerText = totalLibrayBooks;
+}
+
+function booksRead() {
+    let result = myLibrary.filter(e => e.read === "Not Read").length
+    totalNotRead.innerText = result;
+    totalReadBooks.innerText = myLibrary.length - result;
 }
