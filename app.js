@@ -17,6 +17,8 @@ let myLibrary = [];
 
 //EVENT LISTENERS
 
+document.addEventListener('DOMContentLoaded', getBooks);
+
 addBookButton.addEventListener('click', addBookToLibrary);
 bookRead.addEventListener('click', updateCheck);
 bookShelf.addEventListener('click', editInLibrary);
@@ -57,7 +59,8 @@ function addBookToLibrary(event) {
     let newBookRead = isBookRead;
     let book = new Book(newBookTitle, newBookAuthor, newBookPages, newBookLanguage, newBookRead);
 
-    myLibrary.push(book);
+    //myLibrary.push(book);
+    saveLocalBook(book);
     addToBookShelf(book);
     
     //RESET INPUT VALUES
@@ -124,7 +127,10 @@ function editInLibrary(e) {
     if (item.classList[0] === "trash-btn") {
         const bookCard = item.parentElement;
         bookCard.remove();
-        removeBookFromLibrary(bookCard);
+
+        //removeBookFromLibrary(bookCard);
+        removeLocalBook(bookCard);
+
         totalBooksInLibrary();
         booksRead();
     }
@@ -163,17 +169,98 @@ function booksRead() {
     totalReadBooks.innerText = myLibrary.length - result;
 }
 
-function removeBookFromLibrary(bookCard) {
-    let card = bookCard.children[0].innerText;
-    myLibrary.splice(myLibrary.findIndex(x => x.title === card), 1);
-    totalBooksInLibrary();
-    booksRead();
-}
+//function removeBookFromLibrary(bookCard) {
+    //let card = bookCard.children[0].innerText;
+    //myLibrary.splice(myLibrary.findIndex(x => x.title === card), 1);
+    //totalBooksInLibrary();
+    //booksRead();
+//}
 
 function changeReadStatus(item) {
     let bookTitle = item.parentElement.children[0].innerText;
     let shelfSpace = myLibrary.findIndex(x => x.title === bookTitle);
     let updatedReadStatus = item.parentElement.children[4].innerText;
     myLibrary[shelfSpace]["read"] = updatedReadStatus;
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+    booksRead();
+}
+
+function saveLocalBook(book) {
+    //CHECK FOR LOCAL SAVES
+    if (localStorage.getItem('myLibrary') === null) {
+        myLibrary = [];
+    } else {
+        myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+    }
+    myLibrary.push(book);
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+}
+
+function getBooks() {
+    if (localStorage.getItem('myLibrary') === null) {
+        myLibrary = [];
+    } else {
+        myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+    }
+    myLibrary.forEach(function(book) {
+    //CREATE CARDS
+    const cardDiv = document.createElement("div");
+    cardDiv.classList.add("cards");
+    //ADD TITLE TO CARD
+    const titleDiv = document.createElement("div");
+    titleDiv.classList.add("card-title");
+    const h2Title = document.createElement("h2");
+    let newBookTitle = book["title"];
+    h2Title.innerText = newBookTitle;
+    titleDiv.appendChild(h2Title);
+    cardDiv.appendChild(titleDiv);
+    //ADD AUTHOR TO CARD
+    const authorDiv = document.createElement("div");
+    let newBookAuthor = toTitleCase(book["author"]);
+    authorDiv.innerText = newBookAuthor;
+    authorDiv.classList.add("card-author");
+    cardDiv.appendChild(authorDiv); 
+    //ADD PAGE COUNT TO CARD
+    const pageDiv = document.createElement("div");
+    pageDiv.innerText = book["pages"] + " Pages";
+    pageDiv.classList.add("card-pages");
+    cardDiv.appendChild(pageDiv); 
+    //ADD LANGUAGE TO CARD
+    const languageDiv = document.createElement("div");
+    let newBookLanguage = toTitleCase(book["language"]);
+    languageDiv.innerText = newBookLanguage;
+    languageDiv.classList.add("card-language");
+    cardDiv.appendChild(languageDiv);
+    //ADD READ STATUS TO CARD
+    const readDiv = document.createElement("div");
+    readDiv.innerText = book["read"];
+    if (book["read"] === "Read") {
+        readDiv.classList.add("read-it");
+    } else if (book["read"] === "Not Read") {
+        readDiv.classList.add("not-read-it");
+    }
+    cardDiv.appendChild(readDiv);
+    //ADD TRASH BUTTON
+    const trashButton = document.createElement('button');
+    trashButton.innerHTML = '<i class="fas fa-trash"></i>';
+    trashButton.classList.add("trash-btn");
+    cardDiv.appendChild(trashButton);
+    //ADD TO BOOKSHELF
+    bookShelf.appendChild(cardDiv);
+    totalBooksInLibrary();
+    booksRead();
+    });
+}
+
+function removeLocalBook(bookCard) {
+    if (localStorage.getItem('myLibrary') === null) {
+        myLibrary = [];
+    } else {
+        myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+    }
+    let card = bookCard.children[0].innerText;
+    myLibrary.splice(myLibrary.findIndex(x => x.title === card), 1);
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+    totalBooksInLibrary();
     booksRead();
 }
