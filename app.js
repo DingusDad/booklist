@@ -90,7 +90,7 @@ function addToBookShelf(object) {
     const authorDiv = document.createElement("div");
     let newBookAuthor = toTitleCase(bookAuthor.value);
     authorDiv.innerText = newBookAuthor;
-    titleDiv.classList.add("card-author");
+    authorDiv.classList.add("card-author");
     cardDiv.appendChild(authorDiv); 
     //ADD PAGE COUNT TO CARD
     const pageDiv = document.createElement("div");
@@ -124,18 +124,19 @@ function addToBookShelf(object) {
 }
 
 function editInLibrary(e) {
-    console.log(e.target);
     const item = e.target;
     //REMOVE BOOK FROM LIBRARY
     if (item.classList[0] === "trash-btn") {
         const bookCard = item.parentElement;
         bookCard.remove();
+
+        removeBookFromLibrary(bookCard);
+
         totalBooksInLibrary();
         booksRead();
     }
     //CHANGE READ STATUS OF BOOK
     if (item.classList[0] === "read-it") {
-            console.log("change to red")
         item.innerText = "Not Read";
         item.classList.remove("read-it")
         item.classList.add("not-read-it");
@@ -143,7 +144,6 @@ function editInLibrary(e) {
         return;
     }
     if (item.classList[0] === "not-read-it") {
-        console.log("change to green")
         item.innerText = "Read";
         item.classList.remove("not-read-it");
         item.classList.add("read-it"); 
@@ -168,4 +168,11 @@ function booksRead() {
     let result = myLibrary.filter(e => e.read === "Not Read").length
     totalNotRead.innerText = result;
     totalReadBooks.innerText = myLibrary.length - result;
+}
+
+function removeBookFromLibrary(bookCard) {
+    let card = bookCard.children[0].innerText;
+    myLibrary.splice(myLibrary.findIndex(x => x.title === card), 1);
+    totalBooksInLibrary();
+    booksRead();
 }
