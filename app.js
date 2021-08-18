@@ -138,16 +138,16 @@ function editInLibrary(e) {
     //CHANGE READ STATUS OF BOOK
     if (item.classList[0] === "read-it") {
         item.innerText = "Not Read";
-        item.classList.remove("read-it")
+        item.classList.remove("read-it");
         item.classList.add("not-read-it");
-        booksRead();
+        changeReadStatus(item);
         return;
     }
     if (item.classList[0] === "not-read-it") {
         item.innerText = "Read";
         item.classList.remove("not-read-it");
         item.classList.add("read-it"); 
-        booksRead();
+        changeReadStatus(item);
     }
 } 
 
@@ -165,7 +165,7 @@ function totalBooksInLibrary() {
 }
 
 function booksRead() {
-    let result = myLibrary.filter(e => e.read === "Not Read").length
+    let result = myLibrary.filter(x => x.read === "Not Read").length;
     totalNotRead.innerText = result;
     totalReadBooks.innerText = myLibrary.length - result;
 }
@@ -174,5 +174,13 @@ function removeBookFromLibrary(bookCard) {
     let card = bookCard.children[0].innerText;
     myLibrary.splice(myLibrary.findIndex(x => x.title === card), 1);
     totalBooksInLibrary();
+    booksRead();
+}
+
+function changeReadStatus(item) {
+    let bookTitle = item.parentElement.children[0].innerText;
+    let shelfSpace = myLibrary.findIndex(x => x.title === bookTitle);
+    let updatedReadStatus = item.parentElement.children[4].innerText;
+    myLibrary[shelfSpace]["read"] = updatedReadStatus;
     booksRead();
 }
