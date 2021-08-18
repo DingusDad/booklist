@@ -39,12 +39,6 @@ function Book(title, author, pages, language, read) {
     this.pages = pages;
     this.language = language;
     this.read = read;
-    
-    console.log(this.title);
-    console.log(this.author);
-    console.log(this.pages);
-    console.log(this.language);
-    console.log(this.read);
 }
 
 function addBookToLibrary(event) {
@@ -65,7 +59,8 @@ function addBookToLibrary(event) {
 
     myLibrary.push(book);
     addToBookShelf(book);
-
+    
+    //RESET INPUT VALUES
     bookTitle.value = "";
     bookAuthor.value = "";
     bookPages.value = "";
@@ -129,9 +124,7 @@ function editInLibrary(e) {
     if (item.classList[0] === "trash-btn") {
         const bookCard = item.parentElement;
         bookCard.remove();
-
         removeBookFromLibrary(bookCard);
-
         totalBooksInLibrary();
         booksRead();
     }
