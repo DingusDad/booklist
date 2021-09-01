@@ -35,12 +35,14 @@ function updateCheck(event) {
     }
 }
 
-function Book(title, author, pages, language, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.language = language;
-    this.read = read;
+class Book {
+    constructor(title, author, pages, language, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.language = language;
+        this.read = read;
+    }
 }
 
 function addBookToLibrary(event) {
@@ -168,13 +170,6 @@ function booksRead() {
     totalNotRead.innerText = result;
     totalReadBooks.innerText = myLibrary.length - result;
 }
-
-//function removeBookFromLibrary(bookCard) {
-    //let card = bookCard.children[0].innerText;
-    //myLibrary.splice(myLibrary.findIndex(x => x.title === card), 1);
-    //totalBooksInLibrary();
-    //booksRead();
-//}
 
 function changeReadStatus(item) {
     let bookTitle = item.parentElement.children[0].innerText;
